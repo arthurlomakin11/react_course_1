@@ -4,13 +4,13 @@ import { Posts } from './components/Posts/posts';
 import { Users } from './components/Users/users';
 import { Nav } from './components/Nav/Nav'
 
-function App({state}) {
+function App({state, dispatch}) {
   return (
     <div className="App">
       <Router>
         <Nav />
-        <Route render={() => <Posts state={state} />} path="/posts"/>
-        <Route render={() => <Users state={state} />} path="/users"/>
+        <Route render={() => <Posts state={state} dispatch={dispatch} />} path="/posts"/>
+        <Route render={() => <Users state={state} dispatch={dispatch} />} path="/users"/>
       </Router>
     </div>
   );

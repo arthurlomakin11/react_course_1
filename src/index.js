@@ -3,20 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { state, subscribe } from './state/state';
+import { store } from './store/store';
 
-const renderDOM = () => {
+const renderDOM = (state) => {
   ReactDOM.render(
     <React.StrictMode>
-      <App state={state} />
+      <App state={state} dispatch={store.dispatch.bind(store)}/>
     </React.StrictMode>,
     document.getElementById('root')
   );
 }
 
-subscribe(renderDOM);
+store.subscribe(() => {
+  let state = store.getState()
+  renderDOM(state)
+})
 
-renderDOM();
+renderDOM(store.getState())
 
 
 // If you want to start measuring performance in your app, pass a function
